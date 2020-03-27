@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Sample {
 
+    Scheme scheme;
     List<Example> exampleSet;
 
     public Sample() {}
@@ -27,8 +28,36 @@ public class Sample {
     }
 
 
-    public void getRmd() {
-        System.out.println("CHRISIS AN FAJOT");
+    public double getRmd(Attribute b, List<Example> g, int k) {
+        int size = g.size();
+        int m = b.getPossibleValues().length;
+
+        List<Example>[] subg = new ArrayList[m];
+
+        for(int i = 0; i < m; i++) {
+            List<Example> tempList = new ArrayList<Example>();
+            for(int j = 0; j < size; j++) {
+                if(g.get(j).getFunctionValue() == b.getPossibleValues()[i]) {
+                    tempList.add(g.get(j));
+                }
+            }
+            subg[i] = tempList;
+        }
+
+        int[] subcnt = new int[m];
+        for(int i = 0; i < m; i++) {
+            subcnt[i] = subg[i].size();
+        }
+
+        double rem = 0;
+        for(int i = 0; i < m; i++) {
+            double pr = subcnt[i]/size;
+            double info = getInfo(subg[i], k);
+            rem += pr * info;
+        }
+
+        return rem;
+
     }
 
     public void getAttribute() {

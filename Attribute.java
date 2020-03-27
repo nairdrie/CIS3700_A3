@@ -7,6 +7,10 @@ public class Attribute {
         this.name = name;
         this.possibleValues = possibleValues;
     }
+
+    public String[] getPossibleValues() {
+        return this.possibleValues;
+    }
     
 
 }
