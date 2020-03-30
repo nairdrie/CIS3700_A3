@@ -60,7 +60,12 @@ public class Sample {
 
     }
 
-    public void getAttribute() {
+    public void getAttribute(Attribute attrib, List<Example> g) {
+        int k = attrib.getPossibleValues().length;
+        double info = getInfo(g, k);
+        maxGain = -1;
+        bestA = null;
+        
     }
 
 }
